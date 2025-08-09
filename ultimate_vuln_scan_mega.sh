@@ -111,7 +111,7 @@ log "PHASE 1: Passive recon"
 if [[ "$NO_ARCHIVE" != true ]]; then
   if [[ -n "${BIN[waybackurls]}" ]]; then echo "${TARGET_HOST}" | ${BIN[waybackurls]} > "${WORKDIR}/raw/wayback.txt" || true; fi
   if [[ -n "${BIN[gau]}" ]]; then echo "${TARGET_HOST}" | ${BIN[gau]} -o "${WORKDIR}/raw/gau.txt" || true; fi
-  if [[ -n "${BIN[waymore]}" ]]; then ${BIN[waymore]} -d "${TARGET_HOST}" -o "${WORKDIR}/raw/waymore.txt" || true; fi
+  if [[ -n "${BIN[waymore]}" ]]; then ${BIN[waymore]} -i "${TARGET_HOST}" -mode U -o "${WORKDIR}/raw/waymore.txt" || true; fi
   cat "${WORKDIR}/raw/"*.txt 2>/dev/null | sed '/^$/d' | sort -u > "${WORKDIR}/raw/historical_urls.txt" || true
 fi
 
